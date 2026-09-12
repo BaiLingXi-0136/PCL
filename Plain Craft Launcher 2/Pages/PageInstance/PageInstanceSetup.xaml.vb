@@ -69,6 +69,9 @@ Public Class PageInstanceSetup
             '游戏内存
             OnVersionRamTypeChanged(Settings.Get(Of Integer)("VersionRamType", Instance:=PageInstanceLeft.Instance))
 
+            '存档备份
+            RefreshBackupSavesCount()
+
         Catch ex As Exception
             Logger.Error(ex, "重载版本独立设置时出错")
         End Try
@@ -551,6 +554,16 @@ PreFin:
     '启动前执行命令
     Private Sub TextAdvanceRun_TextChanged(sender As Object, e As TextChangedEventArgs) Handles TextAdvanceRun.TextChanged
         CheckAdvanceRunWait.Visibility = (TextAdvanceRun.Text <> "").ToVisibility
+    End Sub
+
+    '存档备份
+    Private Sub RefreshBackupSavesCount() Handles RadioBackupSaves0.Check, RadioBackupSaves1.Check, RadioBackupSaves2.Check
+        If LabBackupSavesCount Is Nothing Then Return
+        '只有在版本中自行开启备份时，才用得上版本自己的保留份数
+        Dim ShowCount = RadioBackupSaves1.Checked.ToVisibility
+        LabBackupSavesCount.Visibility = ShowCount
+        ComboBackupSavesCount.Visibility = ShowCount
+        CardAdvance.TriggerForceResize()
     End Sub
 
     '切换到全局设置

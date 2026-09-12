@@ -236,6 +236,13 @@ Public Class PageInstanceOverall
         OpenExplorer(Folder)
     End Sub
 
+    '备份文件夹
+    Private Sub BtnFolderBackup_Click() Handles BtnFolderBackup.Click
+        Dim Folder As String = McBackupFolder(PageInstanceLeft.Instance)
+        DirectoryUtils.Create(Folder)
+        OpenExplorer(Folder)
+    End Sub
+
 #End Region
 
 #Region "卡片：管理"

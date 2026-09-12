@@ -26,6 +26,9 @@
                             <RowDefinition Height="9" />
                             <RowDefinition Height="28" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="9" />
+                            <RowDefinition Height="28" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="版本隔离" Margin="0,0,25,0" />
                         <local:MyComboBox x:Name="ComboArgumentIndieV2" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1">
@@ -80,6 +83,30 @@
                             <local:MyIconButton Margin="5,2,0,2" Grid.Column="1" x:Name="BtnArgumentJavaSearch"
                                 Logo="M512.0 838.3c-80.2 0-153.4-29.3-210.2-77.4l75.5-75.5c11.5-11.5 25.8-22.0 25.8-37.0a27.2 27.2 0 0 0-27.1-27.1H104.0c-27.1 0-27.1 23.9-27.1 27.1v271.9a27.1 27.1 0 0 0 27.1 27.1c15.0 0 27.8-16.6 42.5-31.2l77.9-77.9c76.6 67.7 177.1 108.9 287.4 108.9 221.7 0 404.5-166.0 431.2-380.6h-109.8c-25.9 154.2-159.7 271.9-321.3 271.9zM919.9 76.6c-15.0 0-27.8 16.6-42.5 31.3L799.5 185.8c-76.5-67.7-177.1-108.9-287.4-108.9-221.8 0-404.5 166.1-431.3 380.6H190.6c25.9-154.2 159.7-271.9 321.4-271.9 80.2 0 153.4 29.3 210.1 77.4l-75.5 75.5c-11.6 11.5-25.8 22.0-25.8 37.1a27.2 27.2 0 0 0 27.1 27.1h271.9c27.1 0 27.1-23.9 27.1-27.1V103.8a27.1 27.1 0 0 0-27.1-27.1z" />
                         </Grid>
+                        <TextBlock Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Left" Text="启动前自动备份存档" Margin="0,0,25,0" />
+                        <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <local:MyRadioBox x:Name="RadioBackupSaves2" Text="跟随全局设置" Checked="True" local:SettingService.Key="VersionAdvanceBackupSaves" local:SettingService.Value="2" Margin="0,0,20,0"
+                                              ToolTip="是否在启动该版本时自动备份存档，跟随全局设置中的 “启动前自动备份存档”。" />
+                            <local:MyRadioBox x:Name="RadioBackupSaves1" Text="开启" local:SettingService.Key="VersionAdvanceBackupSaves" local:SettingService.Value="1" Margin="0,0,20,0"
+                                              ToolTip="无论全局设置如何，启动该版本时都自动备份存档。&#xa;备份保存在版本文件夹下的 Backup 中，每个存档各占一个子文件夹，保留份数可以在下方单独调整。" />
+                            <local:MyRadioBox x:Name="RadioBackupSaves0" Text="关闭" local:SettingService.Key="VersionAdvanceBackupSaves" local:SettingService.Value="0"
+                                              ToolTip="无论全局设置如何，启动该版本时都不自动备份存档。" />
+                        </StackPanel>
+                        <TextBlock Grid.Row="10" x:Name="LabBackupSavesCount" VerticalAlignment="Center" HorizontalAlignment="Left" Text="每个存档保留份数" Margin="0,9,25,0" Visibility="Collapsed" />
+                        <local:MyComboBox x:Name="ComboBackupSavesCount" Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="1" Height="28" Margin="0,9,0,0" Visibility="Collapsed"
+                                          local:SettingService.Key="VersionAdvanceBackupSavesCount"
+                                          ToolTip="该版本的每个存档最多保留的备份份数，超出后会删除该存档最旧的备份。&#xa;备份按存档分别保留，实际占用约为 “存档数 × 份数 × 单个存档大小”，改动存档前请留意磁盘空间。&#xa;仅在上侧选择 “开启” 时生效，选择 “跟随全局设置” 时会使用全局设置中的份数。">
+                            <local:MyComboBoxItem Content="1 份" local:SettingService.Value="1" />
+                            <local:MyComboBoxItem Content="2 份（推荐）" local:SettingService.Value="2" />
+                            <local:MyComboBoxItem Content="3 份" local:SettingService.Value="3" />
+                            <local:MyComboBoxItem Content="4 份" local:SettingService.Value="4" />
+                            <local:MyComboBoxItem Content="5 份" local:SettingService.Value="5" />
+                            <local:MyComboBoxItem Content="6 份" local:SettingService.Value="6" />
+                            <local:MyComboBoxItem Content="7 份" local:SettingService.Value="7" />
+                            <local:MyComboBoxItem Content="8 份" local:SettingService.Value="8" />
+                            <local:MyComboBoxItem Content="9 份" local:SettingService.Value="9" />
+                            <local:MyComboBoxItem Content="10 份" local:SettingService.Value="10" />
+                        </local:MyComboBox>
                     </Grid>
                 </StackPanel>
             </local:MyCard>

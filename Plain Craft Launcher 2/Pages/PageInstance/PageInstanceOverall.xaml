@@ -67,6 +67,8 @@
                     <local:MyButton x:Name="BtnFolderSaves" Text="存档文件夹" MinWidth="140" Padding="13,0" Margin="0,13,20,0" Height="35"/>
                     <local:MyButton x:Name="BtnFolderMods" Text="Mod 文件夹" MinWidth="140" Padding="13,0" Margin="0,13,20,0" Height="35"/>
                     <local:MyButton x:Name="BtnFolderScreen" Text="截图文件夹" MinWidth="140" Padding="13,0" Margin="0,13,20,0" Height="35" />
+                    <local:MyButton x:Name="BtnFolderBackup" Text="备份文件夹" MinWidth="140" Padding="13,0" Margin="0,13,20,0" Height="35"
+                                    ToolTip="启动前的自动备份会按存档分别保存在版本文件夹下的 Backup 中，每个存档各占一个子文件夹。&#xa;可以在此查看备份，或把其中某个 zip 解压回存档文件夹来恢复该存档。&#xa;&#xa;存档被删除或移走后，它的备份会被一并清除。因此重命名存档文件夹会被视为 “删除旧存档并新增一个存档”，这里的备份历史不会保留。" />
                 </WrapPanel>
             </local:MyCard>
             <local:MyCard Margin="0,0,0,15" Title="高级管理" x:Name="PanManage">

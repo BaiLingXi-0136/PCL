@@ -252,6 +252,7 @@
     <Compile Include="Controls\MyTextBox.vb" />
     <Compile Include="Controls\MyTextButton.vb" />
     <Compile Include="GlobalSuppressions.vb" />
+    <Compile Include="Modules\Minecraft\ModBackup.vb" />
     <Compile Include="Modules\Minecraft\ModCrash.vb" />
     <Compile Include="Modules\ModMusic.vb" />
     <Compile Include="Modules\ModDevelop.vb" />

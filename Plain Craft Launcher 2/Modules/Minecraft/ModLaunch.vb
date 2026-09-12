@@ -134,6 +134,14 @@ Public Module ModLaunch
                     Loaders.Insert(3, New LoaderTask(Of Integer, Integer)("内存优化", AddressOf McLaunchMemoryOptimize) With {.ProgressWeight = 30})
                 Case 2 '关闭
             End Select
+            '存档备份，需要在启动进程前完成
+            '不能硬编码下标，内存优化会往列表中插入新的加载器
+            If Not IsSavingBatch Then
+                Dim IndexRun As Integer = Loaders.FindIndex(Function(LoaderItem) LoaderItem.Name = "启动进程")
+                If IndexRun >= 0 Then
+                    Loaders.Insert(IndexRun, New LoaderTask(Of Integer, Integer)("备份存档", AddressOf McLaunchBackupSaves) With {.ProgressWeight = 5})
+                End If
+            End If
             Dim LaunchLoader As New LoaderCombo(Of Object)("Minecraft 启动", Loaders) With {.Show = False}
             If McLoginLoader.State = LoadState.Finished Then McLoginLoader.State = LoadState.Waiting '要求重启登录主加载器，它会自行决定是否启动副加载器
             '等待加载器执行并更新 UI

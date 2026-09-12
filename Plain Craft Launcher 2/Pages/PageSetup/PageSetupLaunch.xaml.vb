@@ -27,6 +27,7 @@ Public Class PageSetupLaunch
             UpdateSkinType()
             UpdateRamType()
             UpdateJavaList()
+            UpdateBackupSavesCount()
         Catch ex As NullReferenceException
             Logger.Error(ex, "启动设置项存在异常，已被自动重置", LogBehavior.Alert)
             Reset()
@@ -127,6 +128,20 @@ Public Class PageSetupLaunch
                 FrmSetupLaunch.PanSkinChange.Visibility = Visibility.Visible
         End Select
         FrmSetupLaunch.CardSkin.TriggerForceResize()
+    End Sub
+
+#End Region
+
+#Region "存档备份"
+
+    ''' <summary>
+    ''' 刷新存档备份份数选项的显示。没有开启自动备份时，保留份数没有意义，因此一并隐藏。
+    ''' </summary>
+    Public Shared Sub UpdateBackupSavesCount()
+        If FrmSetupLaunch?.LabBackupSavesCount Is Nothing Then Return
+        Dim ShowCount = Settings.Get(Of Boolean)("LaunchAdvanceBackupSaves").ToVisibility
+        FrmSetupLaunch.LabBackupSavesCount.Visibility = ShowCount
+        FrmSetupLaunch.ComboBackupSavesCount.Visibility = ShowCount
     End Sub
 
 #End Region
