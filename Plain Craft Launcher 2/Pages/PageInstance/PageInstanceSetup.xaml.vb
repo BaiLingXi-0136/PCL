@@ -563,7 +563,7 @@ PreFin:
         Dim ShowCount = RadioBackupSaves1.Checked.ToVisibility
         LabBackupSavesCount.Visibility = ShowCount
         ComboBackupSavesCount.Visibility = ShowCount
-        CardAdvance.TriggerForceResize()
+        CardArgument.TriggerForceResize()
     End Sub
 
     '切换到全局设置
