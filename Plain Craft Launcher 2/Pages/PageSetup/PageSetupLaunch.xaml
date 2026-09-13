@@ -110,8 +110,8 @@
                         </Grid>
                         <local:MyCheckBox x:Name="CheckBackupSaves" Height="22" Text="启动前自动备份存档" Grid.Row="12" Grid.ColumnSpan="2"
                                           local:SettingService.Key="LaunchAdvanceBackupSaves" ToolTip="启动游戏前将每个存档分别打包为 zip，备份到版本文件夹下的 Backup 中，默认每个存档保留最新的 2 份。&#xa;这样即使存档损坏或被误操作，也可以从备份中恢复。&#xa;&#xa;内容没有变动的存档不会被重复备份，磁盘占用约为 “存档数 × 保留份数 × 单个存档大小”，例如 5 个各 1 GB 的存档保留 2 份时最多约 10 GB，启用前请确认磁盘空间充足。&#xa;&#xa;存档被删除或移走后，它的备份会被一并清除。因此重命名存档文件夹会被视为 “删除旧存档并新增一个存档”，原有备份历史不会保留。&#xa;&#xa;也可以在版本的独立设置中单独调整该版本是否备份，以及该版本要保留的份数。" />
-                        <TextBlock Grid.Row="13" x:Name="LabBackupSavesCount" VerticalAlignment="Center" HorizontalAlignment="Left" Text="每个存档保留份数" Margin="0,9,25,0" />
-                        <local:MyComboBox x:Name="ComboBackupSavesCount" local:SettingService.Key="LaunchAdvanceBackupSavesCount" Grid.Row="13" Grid.ColumnSpan="2" Grid.Column="1" Height="28" Margin="0,9,0,0"
+                        <TextBlock Grid.Row="13" x:Name="LabBackupSavesCount" VerticalAlignment="Center" HorizontalAlignment="Left" Text="备份保留份数" Margin="0,9,25,0" Visibility="Collapsed" />
+                        <local:MyComboBox x:Name="ComboBackupSavesCount" local:SettingService.Key="LaunchAdvanceBackupSavesCount" Grid.Row="13" Grid.ColumnSpan="2" Grid.Column="1" Height="28" Margin="0,9,0,0" Visibility="Collapsed"
                                           ToolTip="每个存档最多保留的备份份数，超出后会删除该存档最旧的备份。&#xa;备份按存档分别保留，实际占用约为 “存档数 × 份数 × 单个存档大小”，改动存档前请留意磁盘空间。&#xa;在版本独立设置中选择 “开启” 的版本不受该项影响，而是使用它自己设置的份数。">
                             <local:MyComboBoxItem Content="1 份" local:SettingService.Value="1" />
                             <local:MyComboBoxItem Content="2 份（推荐）" local:SettingService.Value="2" />
