@@ -58,17 +58,19 @@ Public Module ModBackup
         Try
             Dim Instance = McInstanceSelected
             If Not McBackupSavesAble(Instance) Then Return
-            '存档不存在或为空时不备份
             Dim SavesFolder As String = Instance.PathIndie & "saves\"
-            If Not DirectoryUtils.Exists(SavesFolder) OrElse DirectoryUtils.IsEmpty(SavesFolder) Then
+            Dim BackupFolder As String = McBackupFolder(Instance)
+            '存档不存在或为空时不备份，但不能就此返回：
+            '否则最后一个存档被删除后，它留下的备份将永远得不到清理
+            Dim SaveFolders = New List(Of String)
+            If DirectoryUtils.Exists(SavesFolder) AndAlso Not DirectoryUtils.IsEmpty(SavesFolder) Then
+                SaveFolders = DirectoryUtils.EnumerateDirectories(SavesFolder).ToList()
+            Else
                 Logger.Info($"未找到任何存档，跳过自动备份：{SavesFolder}")
-                Return
             End If
             If Loader.IsCanceled Then Return
             '逐个存档备份，内容没有变动的存档会自行跳过
-            Dim BackupFolder As String = McBackupFolder(Instance)
             Dim Keep As Integer = McBackupSavesKeep(Instance)
-            Dim SaveFolders = DirectoryUtils.EnumerateDirectories(SavesFolder).ToList()
             For Index = 0 To SaveFolders.Count - 1
                 If Loader.IsCanceled Then Return
                 BackupOneSave(SaveFolders(Index), BackupFolder, Keep)
